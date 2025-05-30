@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"noEmit": true,
+		"target": "ESNext",
+		"moduleResolution": "node",
+		"jsx": "react",
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"baseUrl": "src",
+		"paths": {
+			"@/*": [
+				"./*"
+			]
+		},
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true
+	},
+	"include": [
+		"src"
+	]
+}
