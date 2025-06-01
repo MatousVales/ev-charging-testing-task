@@ -9,12 +9,15 @@ export const addMinutesDST = (utcDate: Date, minutes: number, timezone: Simulati
 	return fromZonedTime(zonedResult, timezone)
 }
 
-export const getChargepoints = (params: SimulationParams): Array<Chargepoint> =>
-	Array(params.chargepointCount)
+export const getChargepoints = (
+	chargepointCount: SimulationParams['chargepointCount'],
+	chargepointPowerCapacity: number,
+): Array<Chargepoint> =>
+	Array(chargepointCount)
 		.fill(null)
 		.map((_, index) => ({
 			id: `Charger ${index + 1}`,
-			powerCapacity: params.chargepointPowerCapacity,
+			powerCapacity: chargepointPowerCapacity,
 			currentPowerDraw: 0,
 			occupancy: null,
 		}))

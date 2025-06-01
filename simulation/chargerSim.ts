@@ -76,7 +76,7 @@ const handleNewOccupancy = (
 const main = () => {
 	console.log('Starting simulation...')
 
-	const chargepoints = getChargepoints(SIMULATION_PARAMS)
+	const chargepoints = getChargepoints(SIMULATION_PARAMS.chargepointCount, SIMULATION_PARAMS.chargepointPowerCapacity)
 	const results = getResults()
 	const totalSimulationTicks = SIMULATION_PARAMS.simulationDurationDays * SIMULATION_PARAMS.ticksPerDay
 
