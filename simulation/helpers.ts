@@ -1,7 +1,13 @@
+import {formatInTimeZone, fromZonedTime, toZonedTime} from 'date-fns-tz'
 import {addMinutes} from 'date-fns'
-import {formatInTimeZone} from 'date-fns-tz'
 
 import type {SimulationParams, Chargepoint, SimulationResults} from './types'
+
+export const addMinutesDST = (utcDate: Date, minutes: number, timezone: SimulationParams['timezone']): Date => {
+	const zonedDate = toZonedTime(utcDate, timezone)
+	const zonedResult = addMinutes(zonedDate, minutes)
+	return fromZonedTime(zonedResult, timezone)
+}
 
 export const getChargepoints = (params: SimulationParams): Array<Chargepoint> =>
 	Array(params.chargepointCount)
@@ -34,7 +40,7 @@ export const getChargingDurationInTicks = (energyDemand: number, chargepointPowe
 export const getArrivalProbabilityByCurrentDateTime = (
 	currentDateTime: Date,
 	arrivalProbabilities: SimulationParams['arrivalProbabilities'],
-	timezone: string,
+	timezone: SimulationParams['timezone'],
 ): number => {
 	const timeSlot = formatInTimeZone(currentDateTime, timezone, 'HH')
 	const matchedHourlyProbabilityByTimeslot = arrivalProbabilities.find((arrivalProbability) =>
@@ -50,6 +56,7 @@ export const generateElligibleChargerOccupancy = (
 	evEfficiency: SimulationParams['evEfficiency'],
 	powerCapacity: SimulationParams['chargepointPowerCapacity'],
 	currentTime: Date,
+	timezone: SimulationParams['timezone'],
 ): Chargepoint['occupancy'] => {
 	const randomValue = Math.random()
 	const rangeDemandKm =
@@ -63,7 +70,7 @@ export const generateElligibleChargerOccupancy = (
 			return {
 				evId: crypto.randomUUID(),
 				chargeFrom: new Date(currentTime),
-				chargeTo: addMinutes(new Date(currentTime), chargingDemandTicks * 15),
+				chargeTo: addMinutesDST(new Date(currentTime), chargingDemandTicks * 15, timezone),
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 import {isBefore} from 'date-fns'
+
 import type {SimulationParams, SimulationResults, Chargepoint} from './types'
 import {
 	arrivalProbabilitiesData,
@@ -21,7 +22,7 @@ const SIMULATION_PARAMS: SimulationParams = {
 	chargepointCount: 20,
 	chargepointPowerCapacity: 11,
 	simulationDurationDays: 365,
-	simulationStartDate: new Date('2025-01-01T00:00:00'),
+	simulationStartDate: new Date('2025-01-01T00:00:00Z'),
 	timezone: 'Europe/Berlin',
 	ticksPerHour: 4,
 	ticksPerDay: 96,
@@ -51,12 +52,14 @@ const handleNewOccupancy = (
 	results: SimulationResults,
 	cumulativeChargingDemandProbabilities: SimulationParams['cumulativeChargingDemandProbabilities'],
 	evEfficiency: SimulationParams['evEfficiency'],
+	timezone: SimulationParams['timezone'],
 ) => {
 	const elligibleChargerOccupancy = generateElligibleChargerOccupancy(
 		cumulativeChargingDemandProbabilities,
 		evEfficiency,
 		charger.powerCapacity,
 		currentTime,
+		timezone,
 	)
 	if (elligibleChargerOccupancy) {
 		const availableCharger =
@@ -99,6 +102,7 @@ const main = () => {
 					results,
 					SIMULATION_PARAMS.cumulativeChargingDemandProbabilities,
 					SIMULATION_PARAMS.evEfficiency,
+					SIMULATION_PARAMS.timezone,
 				)
 			}
 
