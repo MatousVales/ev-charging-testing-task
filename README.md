@@ -2,14 +2,21 @@
 
 
  📊 SIMULATION RESULTS 📊
+	
 
 🔌Total Energy Consumed: 60775.00 kWh
+
 🪫Charging Events: 4719 events
+
 🔝Theoretical Maximum Power Demand: 220 kW
+
 🟰Actual Maximum Demand: 88.0 kW
+
 ⚖️Concurrency factor: 40.0%
 
+
 ✅Actual max demand is within expected range.
+
 ✅Concurrency factor is within expected range.
 
 
