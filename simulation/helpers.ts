@@ -1,12 +1,12 @@
-import {formatInTimeZone, fromZonedTime, toZonedTime} from 'date-fns-tz'
+import {formatInTimeZone, utcToZonedTime, zonedTimeToUtc} from 'date-fns-tz'
 import {addMinutes} from 'date-fns'
 
 import type {SimulationParams, Chargepoint, SimulationResults} from './types'
 
 export const addMinutesDST = (utcDate: Date, minutes: number, timezone: SimulationParams['timezone']): Date => {
-	const zonedDate = toZonedTime(utcDate, timezone)
+	const zonedDate = utcToZonedTime(utcDate, timezone)
 	const zonedResult = addMinutes(zonedDate, minutes)
-	return fromZonedTime(zonedResult, timezone)
+	return zonedTimeToUtc(zonedResult, timezone)
 }
 
 export const getChargepoints = (
