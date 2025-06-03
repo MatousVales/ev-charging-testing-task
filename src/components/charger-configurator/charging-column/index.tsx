@@ -3,7 +3,6 @@ import classNames from 'classnames'
 
 import MinusIcon from 'assets/icons/minus'
 import PlusIcon from 'assets/icons/plus'
-import {text} from 'stream/consumers'
 
 interface ChargingColumnProps {
 	fieldName: 'charger11kw' | 'charger22kw' | 'charger55kw'
@@ -70,7 +69,7 @@ const ChargingColumn = ({fieldName, value, onChange, imgSrc, color, label}: Char
 			></div>
 
 			<div className={'relative z-10 flex flex-col items-center justify-between w-full h-full select-none'}>
-				<h3 className={'font-semibold text-slate-700 mb-2'}>{label}</h3>
+				<h3 className={classNames('font-semibold mb-2', textClassName)}>{label}</h3>
 				<div className={'flex items-center justify-center mb-3'}>
 					<img src={imgSrc} alt={''} height={125} width={125} />
 				</div>
