@@ -6,6 +6,7 @@ import TotalEnergyChargedChart from 'components/results/total-energy-charged'
 import ChargingEventsChart from 'components/results/charging-events'
 import ExemplaryDayChart from 'components/results/exemplary-day'
 import Grid from 'components/common/grid'
+import HeroButton from 'components/common/hero-button'
 
 const Results = () => {
 	return (
@@ -28,6 +29,9 @@ const Results = () => {
 					<ExemplaryDayChart />
 				</CardContainer>
 			</Grid>
+			<div className={'flex justify-center mt-6 py-5'}>
+				<HeroButton label={'Get your Free Quote!'} onClick={() => {}} />
+			</div>
 		</div>
 	)
 }

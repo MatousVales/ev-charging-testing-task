@@ -11,6 +11,7 @@ import Header from 'components/common/header'
 import TopMenu from 'components/common/top-menu'
 import SimulationParameters from 'components/simulation-parameters'
 import Results from 'components/results'
+import Button from 'components/common/button'
 
 function App() {
 	const configuratorRef = React.createRef<HTMLDivElement>()
@@ -46,6 +47,12 @@ function App() {
 		}
 	}, [resultsStack, resultsRef])
 
+	const configuartionOverview = (
+		<div>
+			{'Chargers: 2 x 11kW, 1 x 22kW, 1 x 55kW, EV Efficiency: 18kWhs/100km, Duration: 365 Days. '}
+			<strong>{'Theoretical Peak Power Demand: 220kW'}</strong>
+		</div>
+	)
 	return (
 		<>
 			<TopMenu />
@@ -73,7 +80,7 @@ function App() {
 						label={resultsStack.length >= 1 ? 'Compare Results' : 'Simulate!'}
 					/>
 				</div>
-				<div className={'relative'} ref={resultsRef}>
+				<div className={'relative pb-10'} ref={resultsRef}>
 					{resultsStack.length > 0 &&
 						resultsStack.map((result, index) => {
 							const isActive = index === activeResultIndex
@@ -94,6 +101,14 @@ function App() {
 											}`,
 									)}
 									onClick={() => setActiveResultIndex(index)}
+									detail={
+										<div className={'flex items-center'}>
+											<div className={'mr-10 text-xs'}>{configuartionOverview}</div>
+											<Button onClick={() => {}} className={'px-5 py-2'}>
+												{'Export Results'}
+											</Button>
+										</div>
+									}
 								>
 									<Results />
 								</Card>
