@@ -21,10 +21,6 @@
 .env.development.local
 .env.test.local
 .env.production.local
-concurrency.png
-demo.gif
-simulation_demo.gif
-takehome.pdf
 
 npm-debug.log*
 yarn-debug.log*
