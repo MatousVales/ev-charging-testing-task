@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 import InfoIcon from 'assets/icons/info'
 import {pluralize} from 'utils'
@@ -6,7 +6,8 @@ import {pluralize} from 'utils'
 interface SliderProps {
 	fieldName: string
 	label: string
-	onChange?: (value: number) => void
+	onChange: React.ChangeEventHandler<HTMLInputElement>
+	value: number
 	min: number
 	max: number
 	description: string
@@ -14,9 +15,8 @@ interface SliderProps {
 	denominator?: string
 }
 
-export const Slider = ({fieldName, label, min, max, description, unit, denominator}: SliderProps) => {
+export const Slider = ({fieldName, value, label, min, max, description, unit, denominator, onChange}: SliderProps) => {
 	const dontPluralize = unit === '%'
-	const [sliderValue, setSliderValue] = useState(180) // will be replaced with formik
 
 	return (
 		<div className={'w-full my-6 text-left'}>
@@ -25,10 +25,9 @@ export const Slider = ({fieldName, label, min, max, description, unit, denominat
 					{label}
 				</label>
 				<span className={'text-xs text-slate-500'}>
-					<strong className={'text-cyan-700'}>{`${sliderValue} ${pluralize(
-						dontPluralize ? 1 : sliderValue,
-						unit,
-					)}${denominator ? denominator : ''}`}</strong>
+					<strong className={'text-cyan-700'}>{`${value} ${pluralize(dontPluralize ? 1 : value, unit)}${
+						denominator ? denominator : ''
+					}`}</strong>
 					{` (${min}-${max} ${pluralize(dontPluralize ? 1 : 2, unit)}${denominator ? denominator : ''})`}
 				</span>
 			</div>
@@ -40,8 +39,8 @@ export const Slider = ({fieldName, label, min, max, description, unit, denominat
 					name={fieldName}
 					min={min}
 					max={max}
-					value={sliderValue}
-					onChange={(e) => setSliderValue(parseInt(e.target.value))}
+					value={value}
+					onChange={onChange}
 				/>
 				<InfoIcon />
 			</div>

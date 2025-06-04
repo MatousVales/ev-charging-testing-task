@@ -5,15 +5,13 @@ import InfoIcon from 'assets/icons/info'
 interface SelectProps {
 	fieldName: string
 	label: string
-	onChange?: (value: number) => void
+	onChange: React.ChangeEventHandler<HTMLSelectElement>
 	options: Array<{value: string | number; label: string}>
-	initialValue: string | number
+	value: string | number
 	description: string
 }
 
-export const Select = ({fieldName, label, description, initialValue, options}: SelectProps) => {
-	const [selectedValue, setSelectedValue] = useState(initialValue) // will be replace with Formik
-
+export const Select = ({fieldName, label, description, value, onChange, options}: SelectProps) => {
 	return (
 		<div className={'w-full my-6 text-left'}>
 			<div className={'flex justify-between items-center mb-1'}>
@@ -25,8 +23,8 @@ export const Select = ({fieldName, label, description, initialValue, options}: S
 				<select
 					id={fieldName}
 					name={fieldName}
-					value={selectedValue}
-					onChange={(e) => setSelectedValue(e.target.value)}
+					value={value}
+					onChange={onChange}
 					className={
 						'w-full p-2 border border-slate-300 rounded-md shadow-sm focus:ring-cyan-600 focus:border-cyan-600 text-sm text-slate-700 bg-white appearance-none'
 					}

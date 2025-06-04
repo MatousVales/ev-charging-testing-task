@@ -4,16 +4,17 @@ import {twMerge} from 'tailwind-merge'
 import SpinnerIcon from 'assets/icons/spinner'
 
 interface HeroButtonProps {
-	onClick: () => void
+	onClick?: () => void
 	isLoading?: boolean
 	label: string
+	type?: 'button' | 'submit' | 'reset'
 }
 
-const HeroButton = ({onClick, isLoading = false, label}: HeroButtonProps) => {
+const HeroButton = ({onClick, isLoading = false, label, type = 'button'}: HeroButtonProps) => {
 	return (
 		<div className={'relative inline-block group'}>
 			<button
-				type={'button'}
+				type={type}
 				onClick={onClick}
 				disabled={isLoading}
 				className={twMerge(

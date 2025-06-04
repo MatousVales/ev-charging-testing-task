@@ -1,13 +1,29 @@
 import React from 'react'
+import {useField} from 'formik'
 
 import Slider from 'components/forms/slider'
 import Select from 'components/forms/select'
+import {SimulationFormValues} from 'components/forms/types'
+
+const TIMEZONE_OPTIONS = [
+	{value: 'cet', label: 'CET'},
+	{value: 'est', label: 'EST'},
+	{value: 'pst', label: 'PST'},
+]
 
 const SimulationParameters = () => {
+	const [simulationDaysField] = useField<SimulationFormValues['simulationDays']>('simulationDays')
+	const [multiplierField] =
+		useField<SimulationFormValues['arrivalProbabilityMultiplier']>('arrivalProbabilityMultiplier')
+	const [efficiencyField] = useField<SimulationFormValues['evEfficiency']>('evEfficiency')
+	const [timezoneField] = useField<SimulationFormValues['timezone']>('timezone')
+
 	return (
 		<>
 			<Slider
-				fieldName={'simulationDays'}
+				fieldName={simulationDaysField.name}
+				onChange={simulationDaysField.onChange}
+				value={simulationDaysField.value}
 				label={'Simulation Duration'}
 				min={1}
 				max={365}
@@ -15,7 +31,9 @@ const SimulationParameters = () => {
 				unit={'day'}
 			/>
 			<Slider
-				fieldName={'arrivalProbabilityMultiplier'}
+				fieldName={multiplierField.name}
+				onChange={multiplierField.onChange}
+				value={multiplierField.value}
 				label={'Arrival Probability Multiplier'}
 				min={20}
 				max={200}
@@ -23,7 +41,9 @@ const SimulationParameters = () => {
 				unit={'%'}
 			/>
 			<Slider
-				fieldName={'evEfficiency'}
+				fieldName={efficiencyField.name}
+				onChange={efficiencyField.onChange}
+				value={efficiencyField.value}
 				label={'EV Efficiency'}
 				min={15}
 				max={25}
@@ -32,16 +52,12 @@ const SimulationParameters = () => {
 				denominator={'/100km'}
 			/>
 			<Select
-				fieldName={'timezone'}
+				fieldName={timezoneField.name}
+				onChange={timezoneField.onChange}
+				value={timezoneField.value}
 				label={'Timezone'}
 				description={'Select the timezone for the simulation'}
-				options={[
-					{value: 'utc', label: 'UTC'},
-					{value: 'cet', label: 'CET'},
-					{value: 'est', label: 'EST'},
-					{value: 'pst', label: 'PST'},
-				]}
-				initialValue={'utc'}
+				options={TIMEZONE_OPTIONS}
 			/>
 		</>
 	)
