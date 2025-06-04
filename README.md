@@ -5,8 +5,12 @@ The detailed task description can be found in [takehome.pdf](takehome.pdf).
 
 ## Demo
 Here are visual demonstrations of the solution:
-- [Demo](demo.gif)
-- [Simulation Demo](simulation_demo.gif)
+
+Simulation Demo
+![Simulation Demo](simulation_demo.gif)
+
+Frontend App
+![Demo](demo.gif)
 
 ## How To Run
 
@@ -21,7 +25,7 @@ npm run start
 ```
 
 ## (Bonus) Concurrency Factor Results
-- [Concurrency Factor Experiment](concurrency.png)
+![Concurrency Factor Experiment](concurrency.png)
 
 --- Concurrency Factor Experiment Summary ---
 CP Count | Actual Max Demand (kW) | Concurrency Factor (%)
