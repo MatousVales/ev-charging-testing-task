@@ -1,24 +1,27 @@
-# ev-charging-testing-task
+# EV Charging Testing Task
 
+## Task Description
+The detailed task description can be found in [takehome.pdf](takehome.pdf).
 
- 📊 SIMULATION RESULTS 📊
-	
+## Demo
+Here are visual demonstrations of the solution:
+- [Demo](demo.gif)
+- [Simulation Demo](simulation_demo.gif)
 
-🔌Total Energy Consumed: 60775.00 kWh
+## How To Run
 
-🪫Charging Events: 4719 events
+To run the simulation:
+```bash
+npm run simulation
+```
 
-🔝Theoretical Maximum Power Demand: 220 kW
+To run the frontend:
+```bash
+npm run start
+```
 
-🟰Actual Maximum Demand: 88.0 kW
-
-⚖️Concurrency factor: 40.0%
-
-
-✅Actual max demand is within expected range.
-
-✅Concurrency factor is within expected range.
-
+## (Bonus) Concurrency Factor Results
+- [Concurrency Factor Experiment](concurrency.png)
 
 --- Concurrency Factor Experiment Summary ---
 CP Count | Actual Max Demand (kW) | Concurrency Factor (%)
