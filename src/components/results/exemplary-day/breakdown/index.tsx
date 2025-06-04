@@ -10,7 +10,7 @@ interface ExemplaryDayChartProps {
 }
 
 const ExemplaryDayBreakdown = ({breakdown}: ExemplaryDayChartProps) => (
-	<div className={'my-3 p-3 bg-slate-100 rounded-lg text-center'}>
+	<div className={'my-3 p-3 bg-slate-100 rounded-lg text-center border border-slate-300'}>
 		<p className={'text-sm text-slate-700'}>
 			{'Total Energy Charged: '}
 			<span className={'font-bold'}>{`${breakdown.total} kWh`}</span>
